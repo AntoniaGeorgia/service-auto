@@ -1,0 +1,70 @@
+<div class="container">
+  <h2>Administrare Clienți</h2>
+  <button (click)="adaugaClient()">+ Adaugă client nou</button>
+
+  <div *ngFor="let client of clienti; let i = index" class="client-card">
+    <h3>Client {{ i + 1 }}</h3>
+
+    <label>Prenume:</label>
+    <input [(ngModel)]="client.firstName" required placeholder="Prenume" />
+
+    <label>Nume:</label>
+    <input [(ngModel)]="client.lastName" required placeholder="Nume" />
+
+    <label>Email:</label>
+    <input
+      [(ngModel)]="client.email"
+      [class.invalid]="!validEmail(client.email)"
+      placeholder="email@exemplu.com"
+    />
+    <span *ngIf="!validEmail(client.email)" class="error">Email invalid</span>
+
+    <label>Numere de telefon:</label>
+    <div *ngFor="let tel of client.phoneNumbers; let j = index">
+      <input [(ngModel)]="client.phoneNumbers[j]" required placeholder="Telefon {{ j + 1 }}" />
+    </div>
+    <button (click)="adaugaTelefon(client)">+ Adaugă telefon</button>
+
+    <h4>Mașini:</h4>
+    <div *ngFor="let masina of client.cars; let j = index" class="car-card">
+      <label>Nr. înmatriculare:</label>
+      <input [(ngModel)]="masina.licensePlate" placeholder="Ex: B-00-XYZ" />
+
+      <label>Serie șasiu:</label>
+      <input [(ngModel)]="masina.vin" />
+
+      <label>Marcă:</label>
+      <input [(ngModel)]="masina.brand" />
+
+      <label>Model:</label>
+      <input [(ngModel)]="masina.model" />
+
+      <label>An fabricație:</label>
+      <input [(ngModel)]="masina.year" type="number" min="1900" max="2100" />
+
+      <label>Motorizare:</label>
+      <select [(ngModel)]="masina.engineType">
+        <option value="">Selectează...</option>
+        <option value="benzina">Benzină</option>
+        <option value="diesel">Diesel</option>
+        <option value="hibrid">Hibrid</option>
+        <option value="electric">Electric</option>
+      </select>
+
+      <label>Capacitate (cm³):</label>
+      <input [(ngModel)]="masina.engineCapacity" type="number" />
+
+      <label>Cai putere:</label>
+      <input [(ngModel)]="masina.horsepower" type="number" (change)="updateKW(masina)" />
+
+      <label>Putere (kW):</label>
+      <input [(ngModel)]="masina.kilowatts" type="number" (change)="updateHP(masina)" />
+
+      <button (click)="stergeMasina(client, j)">🗑️ Șterge mașina</button>
+    </div>
+
+    <button (click)="adaugaMasina(client)">+ Adaugă mașină</button>
+    <button (click)="dezactiveazaClient(client)" [disabled]="!client.active">🚫 Dezactivează client</button>
+    <button (click)="stergeClient(i)">❌ Șterge client</button>
+  </div>
+</div>

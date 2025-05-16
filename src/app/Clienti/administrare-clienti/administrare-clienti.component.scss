@@ -1,0 +1,80 @@
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #cd4f8a;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+
+  h2 {
+    margin-bottom: 1rem;
+    color: #333;
+    text-align: center;
+  }
+
+  button {
+    margin: 0.5rem 0.5rem 1rem 0;
+    padding: 0.5rem 1rem;
+    background-color:  #851248;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+      background-color:  #cd4f8a;
+    }
+  }
+
+  .client-card {
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid  #cd4f8a;
+    border-radius: 10px;
+
+    h3 {
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.4rem;
+      margin-top: 0.3rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .car-card {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f5f8fa;
+      border: 1px solid #dce3ea;
+      border-radius: 8px;
+    }
+
+    .error {
+      color: #d9534f;
+      font-size: 0.85rem;
+    }
+
+    .invalid {
+      border-color: #d9534f;
+    }
+
+  }
+
+body, :host {
+    background-color: #cd4f8a !important;
+}
+}

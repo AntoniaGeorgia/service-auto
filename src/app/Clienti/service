@@ -1,0 +1,47 @@
+import { Injectable } from '@angular/core';
+import { clientiInitiali } from '../data'; 
+import { Client } from './client.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ClientService {
+  private clienti: Client[] = clientiInitiali.map(client => ({
+    ...client,
+    cars: client.cars.map(car => ({
+      ...car,
+      engineType: car.engineType as "benzina" | "diesel" | "hibrid" | "electric"
+    }))
+  }));
+
+  getAll(): Client[] {
+    return this.clienti;
+  }
+
+  getById(id: number): Client | undefined {
+    return this.clienti.find(c => c.id === id);
+  }
+
+  add(client: Client): void {
+    this.clienti.push({ ...client, id: Date.now() });
+  }
+
+  update(id: number, updated: Partial<Client>): void {
+    const client = this.getById(id);
+    if (client) Object.assign(client, updated);
+  }
+
+  delete(id: number): void {
+    this.clienti = this.clienti.filter(c => c.id !== id);
+  }
+
+  inactivate(id: number): void {
+    const client = this.getById(id);
+    if (client) client.active = false;
+  }
+
+  reactivate(id: number): void {
+    const client = this.getById(id);
+    if (client) client.active = true;
+  }
+}

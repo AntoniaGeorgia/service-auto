@@ -1,0 +1,67 @@
+<div class="container">
+  <h2>Programări Clienți</h2>
+
+  <form (ngSubmit)="adaugaProgramare()" class="form-card">
+    <label>Client:</label>
+    <select [(ngModel)]="programareNoua.clientId" name="clientId" required>
+      <option value="">Selectează clientul</option>
+      <option *ngFor="let client of clienti" [value]="client.id">
+        {{ client.firstName }} {{ client.lastName }}
+      </option>
+    </select>
+
+    <label>Mașină:</label>
+    <select [(ngModel)]="programareNoua.carId" name="carId" required>
+      <option value="">Selectează mașina</option>
+      <option *ngFor="let masina of getMasini(programareNoua.clientId)" [value]="masina.id">
+        {{ masina.licensePlate }} – {{ masina.brand }} {{ masina.model }}
+      </option>
+    </select>
+
+    <label>Modalitate de contact:</label>
+    <select [(ngModel)]="programareNoua.contactMethod" name="contactMethod" required>
+      <option value="email">Email</option>
+      <option value="telefon">Telefon</option>
+      <option value="persoană">În persoană</option>
+    </select>
+
+    <label>Acțiune solicitată:</label>
+    <input [(ngModel)]="programareNoua.action" name="action" required placeholder="Ex: Schimb ulei, revizie..." />
+
+    <label>Interval programare:</label>
+    <select [(ngModel)]="programareNoua.interval" name="interval" required>
+      <option value="">Selectează intervalul</option>
+      <option *ngFor="let int of intervale" [value]="int">{{ int }}</option>
+    </select>
+
+    <button type="submit">Adaugă programare</button>
+  </form>
+
+  <div class="tabel-programari" *ngIf="programari.length">
+    <h3>Lista programări</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Client</th>
+          <th>Mașină</th>
+          <th>Contact</th>
+          <th>Acțiune</th>
+          <th>Interval</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of programari">
+          <td>{{ getNumeClient(p.clientId) }}</td>
+          <td>{{ getNumarInmatriculare(p.carId, p.clientId) }}</td>
+          <td>{{ p.contactMethod }}</td>
+          <td>{{ p.action }}</td>
+          <td>{{ p.interval }}</td>
+          <td>
+            <button (click)="stergeProgramare(p.id)">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

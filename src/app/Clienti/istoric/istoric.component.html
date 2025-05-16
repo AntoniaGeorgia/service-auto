@@ -1,0 +1,57 @@
+<div class="container">
+  <h2>Istoric Service</h2>
+
+  <form (ngSubmit)="adaugaIstoric()" class="form-card">
+    <label>Programare:</label>
+    <select [(ngModel)]="istoricNou.programareId" name="programareId" required>
+      <option value="">Selectează programarea</option>
+      <option *ngFor="let p of programari" [value]="p.id">
+        {{ getNumeClient(p.id) }} – {{ getMasina(p.id) }} ({{ p.interval }})
+      </option>
+    </select>
+
+    <label>Observații la primire:</label>
+    <textarea [(ngModel)]="istoricNou.primire" name="primire" required></textarea>
+
+    <label>Procesare efectuată:</label>
+    <textarea [(ngModel)]="istoricNou.procesare" name="procesare" required></textarea>
+
+    <label>Durată reparație (minute):</label>
+    <input
+      type="number"
+      [(ngModel)]="istoricNou.durata"
+      name="durata"
+      min="10"
+      step="10"
+      required
+    />
+
+    <button type="submit">Adaugă în istoric</button>
+  </form>
+
+  <div *ngIf="istorice.length" class="tabel-istoric">
+    <h3>Istoric complet</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Client</th>
+          <th>Mașină</th>
+          <th>Primire</th>
+          <th>Procesare</th>
+          <th>Durată (min)</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of istorice">
+          <td>{{ getNumeClient(i.programareId) }}</td>
+          <td>{{ getMasina(i.programareId) }}</td>
+          <td>{{ i.primire }}</td>
+          <td>{{ i.procesare }}</td>
+          <td>{{ i.durata }}</td>
+          <td><button (click)="stergeIstoric(i.id)">🗑️</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

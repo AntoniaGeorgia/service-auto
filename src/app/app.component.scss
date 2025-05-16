@@ -1,0 +1,25 @@
+.navbar .navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+    color: #7b2ca2;
+}
+.nav .nav-item, .nav .nav-link {
+    margin: 0 10px;
+    font-size: 1.2rem;
+    color:#7b2ca2
+}
+ video.bg {
+  position: fixed;       
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;     
+  z-index: -1;           
+  pointer-events: none;  
+}
+.page-content {
+  position: relative;
+  z-index: 1;
+}
+

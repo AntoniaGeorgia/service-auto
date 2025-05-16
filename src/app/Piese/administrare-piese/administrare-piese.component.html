@@ -1,0 +1,46 @@
+<h2>Administrare Piese</h2>
+
+<div *ngIf="editingIndex !== null || editingMode; else listaPiese">
+  <h3>{{ editingIndex !== null ? 'Editează piesa' : 'Adaugă piesă nouă' }}</h3>
+  <form (ngSubmit)="savePiesa()">
+    <label>
+      Nume piesă:
+      <input [(ngModel)]="editingPiesa.name" name="name" required />
+    </label><br />
+
+    <label>
+      Cod piesă:
+      <input [(ngModel)]="editingPiesa.code" name="code" required />
+    </label><br />
+
+    <label>
+      Preț:
+      <input type="number" [(ngModel)]="editingPiesa.price" name="price" required />
+    </label><br />
+
+    <button type="submit">Salvează</button>
+    <button type="button" (click)="cancelEdit()">Anulează</button>
+  </form>
+</div>
+
+<ng-template #listaPiese>
+  <button (click)="startAdd()">Adaugă piesă nouă</button>
+  <table>
+    <tr>
+      <th>Nume</th>
+      <th>Cod</th>
+      <th>Preț</th>
+      <th>Acțiuni</th>
+    </tr>
+    <tr *ngFor="let piesa of piese; let i = index">
+      <td>{{ piesa.name }}</td>
+      <td>{{ piesa.code }}</td>
+      <td>{{ piesa.price }} lei</td>
+      <td>
+        <button (click)="editPiesa(i)">Editează</button>
+        <button (click)="sterge(i)">Șterge</button>
+        <button (click)="comandaPiesa(piesa)">Comandă</button>
+      </td>
+    </tr>
+  </table>
+</ng-template>

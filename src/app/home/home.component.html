@@ -1,0 +1,110 @@
+<main id="grid-pagina">
+  <header>
+    <h1>Bine ai venit la Service Auto!</h1>
+    <p>Programul nostru și locațiile disponibile sunt prezentate mai jos:</p>
+
+  </header>
+  <div class="page-content">
+  <router-outlet></router-outlet>
+</div>
+
+  <section class="sectiune-tabele">
+    <div class="calendar tabel-wrapper">
+      <h2>Program de lucru</h2>
+      <table>
+        <thead>
+          <tr><th>Zi</th><th>Ore</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of programOre">
+            <td>{{ item.zi }}</td>
+            <td>{{ item.ore }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="faq-wrapper">
+      <h2>Întrebări frecvente</h2>
+      <details class="FAQ">
+        <summary>Pot veni fără programare?</summary>
+        <p class="raspuns">Da, dar prioritate au cei cu programare.</p>
+      </details>
+      <details class="FAQ">
+        <summary>Este gratuită constatarea?</summary>
+        <p class="raspuns">Da, pentru clienții fideli este gratuită.</p>
+      </details>
+      <details class="FAQ">
+        <summary>Pot schimba ora unei programări?</summary>
+        <p class="raspuns">Da, cu minim 24h înainte.</p>
+      </details>
+    </div>
+
+    <div class="calendar tabel-wrapper">
+      <h2>Locații București</h2>
+      <table>
+        <thead>
+          <tr><th>Locație</th><th>Adresă</th><th>Telefon</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let locatie of locatiiService">
+            <td>{{ locatie.locatie }}</td>
+            <td>{{ locatie.adresa }}</td>
+            <td>{{ locatie.telefon }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="galerie">
+    <h2>Galerie imagini</h2>
+    <img src="assets/img/G-63-AMG-2.jpg" alt="Imagine 1" />
+    <img src="assets/img/film-fast_furious.webp" alt="Imagine 2" />
+    <img src="assets/img/sddefault.jpg" alt="Imagine 3" />
+    <img src="assets/img/1939-Alfa-Romeo-8C-2900B-Lungo-Spider.jpg"alt="Imagine 4" />
+  </section>
+
+  <section class="container-iframe">
+    <div class="taburi-iframe">
+      <a href="https://www.youtube.com/embed/fdGWRq1dVBA?si=2sQNeyfb5bYkhqwO" target="ifr-video">Cars</a>
+      <a href="https://www.youtube.com/embed/UEahQP9moaQ?si=-lqk2bPGO4cz7ltB" target="ifr-video">F1</a>
+      <a href="https://www.youtube.com/embed/cbYMUNfmOk4?si=Zce4xywvHxW_-kAh" target="ifr-video">Nascar</a>
+    </div>
+    <iframe name="ifr-video" src="https://www.youtube.com/embed/Vf50UQl2IJs?si=MDhqlZNXV-mDHr39" allowfullscreen loading="lazy"></iframe>
+  </section>
+
+  <section id="sectiune3">
+    <h2>Logați-vă la contul dumneavoastră</h2>
+    <form>
+      <label for="name">Nume:</label>
+      <input type="text" id="name" name="name" placeholder="Introduceți numele" />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Introduceți adresa de email" />
+
+      <label for="message">Mesaj:</label>
+      <textarea id="message" name="message" placeholder="Scrieți mesajul aici"></textarea>
+
+      <button type="submit">Trimite</button>
+    </form>
+  </section>
+</main>
+
+<a href="#" class="back-to-top" (click)="scrollTop($event)">
+  <span class="tooltip">Înapoi sus</span>
+</a>
+<footer>
+  <p class="banner">Programarile se fac doar de catre persoanele peste 18 ani!</p>
+  <address>
+    📞 Telefon: <a href="tel:+40712345678">+40 712 345 678</a><br />
+    📍 Adresă: <a href="https://www.google.com/maps?q=Facultatea+de+Matematica+si+Informatica" target="_blank">Str. Academiei, Nr. 14, București</a><br />
+    ✉️ E-mail: <a href="mailto:contact@serviceauto.ro">contact@serviceauto.ro</a><br />
+    💬 Chat: <a href="https://wa.me/40712345678" target="_blank">WhatsApp</a> | <a href="skype:live:serviceauto?chat">Skype</a>
+  </address>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2851.6403290264984!2d26.121748975913633!3d44.378975671076866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1fe11e55faa41%3A0xc6c20c2cda7edb46!2zQWxlZWEgUsOidWwgVMOicmd1bHVpLCBCdWN1cmXImXRp!5e0!3m2!1sro!2sro!4v1746746698968!5m2!1sro!2sro"
+    width="100%" height="450" style="border:0;" allowfullscreen loading="lazy">
+  </iframe>
+  <small>&copy; <time datetime="2025-05-09">Mai 2025</time> Service Auto. Toate drepturile rezervate.</small>
+</footer>
